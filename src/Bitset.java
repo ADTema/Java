@@ -4,8 +4,15 @@ public class Bitset {
     private int search;
 
     //Пересечение
-    public Bitset intersection (int[] array1, int[] array2){
-
+    public int[] intersection (int[] array1, int[] array2, int[] inter){
+        inter=new int[0];
+        for(int i=0;i<array1.length;i++){
+            for (int i1 : array2){
+                if(array1[i]==i1){
+                    add();// тут я хочу использовать add
+                }
+            }
+        }return inter;
     }
     //Объединение
     public Bitset association (int[] array1, int[] array2){
@@ -16,8 +23,12 @@ public class Bitset {
 
     }
     //Добавление
-    public Bitset add (int[] array,int a ){
-
+    public int[] add(int[] array1, int a){
+        array2 = new int[array1.length+1];
+        System.arraycopy(array1, 0, array2, 0, array1.length);
+        array2[array1.length+1]=a;
+        array1=array2;
+        return array1;
     }
     //Удаление
     public int[] remuve (int[] array1, int search,int[] array3){
