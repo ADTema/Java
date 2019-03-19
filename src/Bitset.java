@@ -3,8 +3,8 @@ public class Bitset {
     private int search;
 
     //Пересечение
-    private int[] intersection (int[] array1, int[] array2, int[] inter){
-        inter=new int[0];
+    private int[] intersection (int[] array1, int[] array2){
+        int[] inter=new int[0];
         for (int i2 : array1) {
             for (int i1 : array2) {
                 if (i2 == i1) {
@@ -37,8 +37,8 @@ public class Bitset {
         return array1;
     }
     //Удаление
-    private int[] remuve (int[] array1, int search,int[] array3){
-        search = 3;
+    private int[] remuve (int[] array1, int search){
+        int[] array3 = new int[0];
         for (int j = 0; j < array1.length; j++) { //поиск удаляемого элемента
             for (int i = j; i < array1.length; i++) {
                 if (array1[i] == search) {
