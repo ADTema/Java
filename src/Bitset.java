@@ -1,9 +1,10 @@
 public class Bitset {
     private int[] array1;
+    private int[] array2;
     private int search;
 
     //Пересечение
-    private int[] intersection (int[] array1, int[] array2){
+    public int[] intersection (int[] array1, int[] array2){
         int[] inter=new int[0];
         for (int i2 : array1) {
             for (int i1 : array2) {
