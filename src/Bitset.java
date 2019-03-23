@@ -53,14 +53,14 @@ class Bitset{
     //Удаление
     private void remuve (int search){
         Bitset array3 = new Bitset(0);
-        for (int j = 0; j < array1.length; j++) {
-            for (int i = j; i < array1.length; i++) {
-                if (array1[i] == search) {
-                    for (int k = i; k < array1.length - 1; k++) {
-                        array1[k] = array1[k + 1];
-                        array3.array1 = new int[array1.length-1];
+        for (int j = 0; j < this.array1.length; j++) {
+            for (int i = j; i < this.array1.length; i++) {
+                if (this.array1[i] == search) {
+                    for (int k = i; k < this.array1.length - 1; k++) {
+                        this.array1[k] = this.array1[k + 1];
+                        array3.array1 = new int[this.array1.length-1];
                         for(int g =0;g<array3.array1.length;g++){
-                            array3.array1[i]=array1[i];
+                            array3.array1[i]=this.array1[i];
                         }
                     }
                 }
