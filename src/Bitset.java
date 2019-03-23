@@ -1,68 +1,81 @@
-public class Bitset {
-    private int[] array1;
-    private int[] array2;
-    private int search;
+class Bitset{
+    private int[] array1;//Массив
+    private Integer size; //Размер
 
+    Bitset(int a){
+        size=a;
+        array1 =new int[size];
+    }
+    //Добавление
+    private void add(int a){
+        Bitset array2 = new Bitset(this.array1.length + 1);
+        System.arraycopy(this.array1, 0, array2.array1, 0, this.array1.length);
+        array2.array1[this.array1.length+1]=a;
+        this.array1= array2.array1;
+    }
     //Пересечение
-    public int[] intersection (int[] array1, int[] array2){
-        int[] inter=new int[0];
+    public void intersection (Bitset array2){
+        Bitset inter=new Bitset(0);
         for (int i2 : array1) {
-            for (int i1 : array2) {
+            for (int i1 : array2.array1) {
                 if (i2 == i1) {
-                    add(inter, i1);
+                    inter.add(i1);
                 }
             }
         }
-        return inter;
     }
-    //Объединение
-    private int[] association (int[] array1, int[] array2){
-        for (int i2:array2){
-            add(array1,i2);
-        }return array1;
+    //Принадлежность
+    private boolean accessory(int a){
+        boolean ans=false;
+        for(int i:this.array1) {
+            if(i==a) {
+                ans=true;
+                break;
+            }
+        }return ans;
     }
     //Дополнение
-    private int[] addition (int[] array1, int[] array2){
-        for (int i2:array2) {
-            if(!accessory(array1, i2)){
-            add(array1,i2);
+    public void addition (Bitset array2){
+        for (int i2:array2.array1) {
+            if(!this.accessory(i2)){
+            this.add(i2);
             }
-        }return array1;
+        }
     }
-    //Добавление
-    private int[] add(int[] array1, int a){
-        int[] array2 = new int[array1.length + 1];
-        System.arraycopy(array1, 0, array2, 0, array1.length);
-        array2[array1.length+1]=a;
-        array1= array2;
-        return array1;
+
+    //Объединение
+    public void association (Bitset array2){
+        for (int i2:array2.array1){
+            this.add(i2);
+        }
     }
+
     //Удаление
-    private int[] remuve (int[] array1, int search){
-        int[] array3 = new int[0];
-        for (int j = 0; j < array1.length; j++) { //поиск удаляемого элемента
+    private void remuve (int search){
+        Bitset array3 = new Bitset(0);
+        for (int j = 0; j < array1.length; j++) {
             for (int i = j; i < array1.length; i++) {
                 if (array1[i] == search) {
-                    for (int k = i; k < array1.length - 1; k++) { //сдвиг последующих элементов
+                    for (int k = i; k < array1.length - 1; k++) {
                         array1[k] = array1[k + 1];
-                        array3 = new int[array1.length-1];
-                        for(int g =0;g<array3.length;g++){
-                            array3[i]=array1[i];
+                        array3.array1 = new int[array1.length-1];
+                        for(int g =0;g<array3.array1.length;g++){
+                            array3.array1[i]=array1[i];
                         }
                     }
                 }
             }
-        }return array3;
-    }
-    //Принадлежность
-    private boolean accessory(int[] array1, int a){
-        boolean ans=false;
-        for(int i:array1) {
-            if(i==a) { //поиск элемента
-                ans=true;
-                break;
-            }
         }
-        return ans;
+        this.array1=array3.array1;
+    }
+    void printSet() {
+        System.out.println();
+    }
+}
+
+class Main {
+    public static void main(){
+        Bitset qwe=new Bitset(0);
+        qwe.printSet();
     }
 }
