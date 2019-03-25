@@ -1,23 +1,24 @@
 class Bitset{
-    private int[] array1;//Массив
+    private int[] array;//Массив
     private Integer size; //Размер
 
     Bitset(int a){
         size=a;
-        array1 =new int[size];
+        array=new int[size];
+        this.size=a;
     }
     //Добавление
     private void add(int a){
-        Bitset array2 = new Bitset(this.array1.length + 1);
-        System.arraycopy(this.array1, 0, array2.array1, 0, this.array1.length);
-        array2.array1[this.array1.length+1]=a;
-        this.array1= array2.array1;
+        Bitset array2 = new Bitset(this.array.length + 1);
+        System.arraycopy(this.array, 0, array2.array, 0, this.array.length);
+        array2.array[this.array.length+1]=a;
+        this.array= array2.array;
     }
     //Пересечение
     public void intersection (Bitset array2){
         Bitset inter=new Bitset(0);
-        for (int i2 : array1) {
-            for (int i1 : array2.array1) {
+        for (int i2 : array) {
+            for (int i1 : array2.array) {
                 if (i2 == i1) {
                     inter.add(i1);
                 }
@@ -27,7 +28,7 @@ class Bitset{
     //Принадлежность
     private boolean accessory(int a){
         boolean ans=false;
-        for(int i:this.array1) {
+        for(int i:this.array) {
             if(i==a) {
                 ans=true;
                 break;
@@ -36,7 +37,7 @@ class Bitset{
     }
     //Дополнение
     public void addition (Bitset array2){
-        for (int i2:array2.array1) {
+        for (int i2:array2.array) {
             if(!this.accessory(i2)){
             this.add(i2);
             }
@@ -45,7 +46,7 @@ class Bitset{
 
     //Объединение
     public void association (Bitset array2){
-        for (int i2:array2.array1){
+        for (int i2:array2.array){
             this.add(i2);
         }
     }
@@ -53,20 +54,20 @@ class Bitset{
     //Удаление
     private void remuve (int search){
         Bitset array3 = new Bitset(0);
-        for (int j = 0; j < this.array1.length; j++) {
-            for (int i = j; i < this.array1.length; i++) {
-                if (this.array1[i] == search) {
-                    for (int k = i; k < this.array1.length - 1; k++) {
-                        this.array1[k] = this.array1[k + 1];
-                        array3.array1 = new int[this.array1.length-1];
-                        for(int g =0;g<array3.array1.length;g++){
-                            array3.array1[i]=this.array1[i];
+        for (int j = 0; j < this.array.length; j++) {
+            for (int i = j; i < this.array.length; i++) {
+                if (this.array[i] == search) {
+                    for (int k = i; k < this.array.length - 1; k++) {
+                        this.array[k] = this.array[k + 1];
+                        array3.array = new int[this.array.length-1];
+                        for(int g =0;g<array3.array.length;g++){
+                            array3.array[i]=this.array[i];
                         }
                     }
                 }
             }
         }
-        this.array1=array3.array1;
+        this.array=array3.array;
     }
     void printSet() {
         System.out.println();
