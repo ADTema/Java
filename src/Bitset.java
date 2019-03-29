@@ -1,20 +1,39 @@
-class Bitset{
-    private int[] array;//Массив
-    private Integer size; //Размер
 
-    Bitset(int a){
-        size=a;
-        array=new int[size];
-        this.size=a;
+class Bitset{
+    int[] array;//Массив
+    private int size;
+    Bitset(int size){
+        if(size%32==0){
+            array=new int[size/32];
+            for (int i=0;i<array.length;i++) {
+                array[i]= Integer.parseInt("1111111111111111111111111111111", 2);
+            }
+        }else {
+            array=new int[(size/32)+1];
+            for (int i=0;i<array.length;i++) {
+                array[i]=Integer.parseInt("1111111111111111111111111111111", 2);
+            }
+            StringBuilder str= new StringBuilder();
+            for(int j=0;j<size%32;j++){
+                str.append(1);
+            }
+            String st = String.valueOf(str);
+            array[array.length-1]= Integer.parseInt(st, 2);
+        }
+        this.size=size;
     }
+    public void newsize(int size){
+        this.array=new int[size];
+    }
+/*
     //Добавление
-    private void add(int a){
-        Bitset array2 = new Bitset(this.array.length + 1);
-        System.arraycopy(this.array, 0, array2.array, 0, this.array.length);
-        array2.array[this.array.length+1]=a;
+    public void add(int a){
+        Bitset array2 = new Bitset(this.array,this.size + 1);
+        array2.array[array2.size-1]=a;
         this.array= array2.array;
-    }
-    //Пересечение
+    }*/
+
+    /*//Пересечение
     public void intersection (Bitset array2){
         Bitset inter=new Bitset(0);
         for (int i2 : array) {
@@ -25,6 +44,7 @@ class Bitset{
             }
         }
     }
+
     //Принадлежность
     private boolean accessory(int a){
         boolean ans=false;
@@ -35,6 +55,7 @@ class Bitset{
             }
         }return ans;
     }
+
     //Дополнение
     public void addition (Bitset array2){
         for (int i2:array2.array) {
@@ -69,14 +90,8 @@ class Bitset{
         }
         this.array=array3.array;
     }
-    void printSet() {
+
+    void printSet(){
         System.out.println();
     }
-}
-
-class Main {
-    public static void main(){
-        Bitset qwe=new Bitset(0);
-        qwe.printSet();
-    }
-}
+*/}
