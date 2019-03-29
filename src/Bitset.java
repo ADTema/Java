@@ -6,7 +6,7 @@ class Bitset{
         if(size%32==0){
             array=new int[size/32];
             for (int i=0;i<array.length;i++) {
-                array[i]= Integer.parseInt("1111111111111111111111111111110", 2);
+                array[i]= Integer.parseInt("0", 2);
             }
         }else {
             array=new int[(size/32)+1];
@@ -35,18 +35,17 @@ class Bitset{
 
     }*/
     //Добавление
-    public void add(int number){
+    public void add(int number){//Меняет бит под определенным номером с 0 на 1
         int num=number%32;
         int r=0;
         if (number%32==0){
-            r=number>>(0);
+            r=32>>(1);
             number=(number/32)-1;
         }else {
             number = (int)Math.floor(number >> 5);
-            r=num>>(1);
+            r=33-num>>(1);
         }
-        this.array[number]=this.array[number]|r;
-
+        this.array[number]|=r;
     }
 /*
     //Пересечение
