@@ -6,7 +6,7 @@ class Bitset{
         if(size%32==0){
             array=new int[size/32];
             for (int i=0;i<array.length;i++) {
-                array[i]= Integer.parseInt("1111111111111111111111111111111", 2);
+                array[i]= Integer.parseInt("0111111111111111111111111111111", 2);
             }
         }else {
             array=new int[(size/32)+1];
@@ -22,18 +22,31 @@ class Bitset{
         }
         this.size=size;
     }
-    public void newsize(int size){
-        this.array=new int[size];
+    /*//Удаление
+    public void remuve(int number){
+        if (number%32==0){
+            number=(number/32)-1;
+            int bi=1;
+        }else {
+            int bi=number;
+            number = (int)Math.floor(number/32);
+        }
+        this.array[number]=this.array[number]|(0<<(32-(number%32)));
+
+    }*/
+    //Добавление
+    public void add(int number){
+        if (number%32==0){
+            number=(number/32)-1;
+        }else {
+            number = (int)Math.floor(number >> 5);
+        }
+        int r=1<<(32-(number%32));
+        this.array[number]=this.array[number]|r;
+
     }
 /*
-    //Добавление
-    public void add(int a){
-        Bitset array2 = new Bitset(this.array,this.size + 1);
-        array2.array[array2.size-1]=a;
-        this.array= array2.array;
-    }*/
-
-    /*//Пересечение
+    //Пересечение
     public void intersection (Bitset array2){
         Bitset inter=new Bitset(0);
         for (int i2 : array) {
@@ -72,24 +85,7 @@ class Bitset{
         }
     }
 
-    //Удаление
-    private void remuve (int search){
-        Bitset array3 = new Bitset(0);
-        for (int j = 0; j < this.array.length; j++) {
-            for (int i = j; i < this.array.length; i++) {
-                if (this.array[i] == search) {
-                    for (int k = i; k < this.array.length - 1; k++) {
-                        this.array[k] = this.array[k + 1];
-                        array3.array = new int[this.array.length-1];
-                        for(int g =0;g<array3.array.length;g++){
-                            array3.array[i]=this.array[i];
-                        }
-                    }
-                }
-            }
-        }
-        this.array=array3.array;
-    }
+
 
     void printSet(){
         System.out.println();
