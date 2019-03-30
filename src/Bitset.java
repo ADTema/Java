@@ -1,4 +1,3 @@
-
 class Bitset{
     int[] array;//Массив
     private int size;
@@ -37,15 +36,16 @@ class Bitset{
     //Добавление
     public void add(int number){//Меняет бит под определенным номером с 0 на 1
         int num=number%32;
-        int r=0;
+        int r=1;
         if (number%32==0){
-            r=32>>(1);
-            number=(number/32)-1;
+            r=r<<(31);
+            number=number/32;
         }else {
             number = (int)Math.floor(number >> 5);
-            r=33-num>>(1);
+            r=r<<(31-num);
         }
         this.array[number]|=r;
+        System.out.println(r);
     }
 /*
     //Пересечение
