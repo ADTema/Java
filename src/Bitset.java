@@ -5,7 +5,7 @@ class Bitset{
         if(size%32==0){
             array=new int[size/32];
             for (int i=0;i<array.length;i++) {
-                array[i]= Integer.parseInt("0", 2);
+                array[i]= Integer.parseInt("1111111111111111111111111111111", 2);
             }
         }else {
             array=new int[(size/32)+1];
@@ -21,18 +21,21 @@ class Bitset{
         }
         this.size=size;
     }
-    /*//Удаление
+    //Удаление
     public void remuve(int number){
+        int num=number%32;
+        int r=2147483646;
         if (number%32==0){
-            number=(number/32)-1;
-            int bi=1;
+            r=r<<(31);
+            number=number/32;
         }else {
-            int bi=number;
-            number = (int)Math.floor(number/32);
+            number = (int)Math.floor(number >> 5);
+            r=r<<(31-num);
         }
-        this.array[number]=this.array[number]|(0<<(32-(number%32)));
+        this.array[number]&=Math.abs(r);
+        System.out.println(Math.abs(r));
+    }
 
-    }*/
     //Добавление
     public void add(int number){//Меняет бит под определенным номером с 0 на 1
         int num=number%32;
