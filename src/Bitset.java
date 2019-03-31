@@ -26,14 +26,20 @@ class Bitset{
         int num=number%32;
         int r=2147483646;
         if (number%32==0){
-            r=r<<(31);
+            for (int i=0;i<31;i++){
+                r=r<<1;
+                r|=1;
+            }
             number=number/32;
         }else {
             number = (int)Math.floor(number >> 5);
-            r=r<<(31-num);
+            for (int i=0;i<32-num;i++){
+                r=r<<1;
+                r|=1;
+            }
         }
         this.array[number]&=Math.abs(r);
-        System.out.println(Math.abs(r));
+        System.out.println(Integer.toBinaryString(r));
     }
 
     //Добавление
@@ -48,7 +54,7 @@ class Bitset{
             r=r<<(31-num);
         }
         this.array[number]|=r;
-        System.out.println(r);
+        System.out.println(Integer.toBinaryString(r));
     }
 /*
     //Пересечение
