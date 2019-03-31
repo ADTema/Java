@@ -5,7 +5,7 @@ class Bitset{
         if(size%32==0){
             array=new int[size/32];
             for (int i=0;i<array.length;i++) {
-                array[i]= Integer.parseInt("1111111111111111111111111111111", 2);
+                array[i]= Integer.parseInt("0", 2);
             }
         }else {
             array=new int[(size/32)+1];
@@ -40,6 +40,7 @@ class Bitset{
         }
         this.array[number]&=Math.abs(r);
         System.out.println(Integer.toBinaryString(r));
+        System.out.println(Integer.toBinaryString(this.array[number]));
     }
 
     //Добавление
