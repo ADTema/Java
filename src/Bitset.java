@@ -52,8 +52,9 @@ class Bitset{
         }else {
             inter=new Bitset(this.size);
         }
-        for (int i=0;i<inter.array.length-1;i++){
+        for (int i=0;i<inter.array.length;i++){
             inter.array[i]=this.array[i]&array2.array[i];
+            System.out.println(Arrays.toString(inter.array));
         }return inter;
     }
 
