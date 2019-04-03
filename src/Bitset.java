@@ -93,21 +93,4 @@ class Bitset{
         }System.out.println(Arrays.toString(inte.array));
         return inte;
     }
-/*
-    //Дополнение
-    public void addition (Bitset array2){
-        for (int i2:array2.array) {
-            if(!this.accessory(i2)){
-            this.add(i2);
-            }
-        }
-    }
-
-
-
-
-
-    void printSet(){
-        System.out.println();
-    }
-*/}
+}
