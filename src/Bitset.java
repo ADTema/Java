@@ -10,7 +10,7 @@ class Bitset{
     }
 
     //Удаление
-    public void remuve(int number){//Меняет бит под определенным номером с 1 на 0
+    public void remove(int number){//Меняет бит под определенным номером с 1 на 0
         if(number<=this.size){
             int num=number%32;
             int r=Integer.MAX_VALUE-1;
@@ -55,17 +55,18 @@ class Bitset{
         }return inter;
     }
 
-    /*//Принадлежность
-    private boolean accessory(int a){
+    //Принадлежность
+    public boolean accessory(int number){
         boolean ans=false;
-        for(int i:this.array) {
-            if(i==a) {
-                ans=true;
-                break;
-            }
-        }return ans;
+        int by=this.array[(int) Math.ceil(number/33)];
+        for(int i=0;i<(number%32);i++){
+            by/=2;
+        }
+        if (by%2==1) ans=true;
+        System.out.println(ans);
+        return ans;
     }
-
+/*
     //Дополнение
     public void addition (Bitset array2){
         for (int i2:array2.array) {
