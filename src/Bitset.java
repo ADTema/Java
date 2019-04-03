@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Bitset{
     int[] array;//Массив
     private int size;
@@ -68,15 +70,27 @@ class Bitset{
     }
     //Объединение
     public Bitset association (Bitset array2){
-        Bitset inter=new Bitset(0);
+        Bitset inte=new Bitset(0);
+        int in = 0;
         if(this.size>array2.size){
-            inter=new Bitset(array2.size);
+            inte=new Bitset(array2.size+(this.size-array2.size));
+            in = array2.array.length;
         }else {
-            inter=new Bitset(this.size);
+            inte=new Bitset(this.size+(array2.size-this.size));
+            in = this.array.length;
         }
-        for (int i=0;i<inter.array.length-1;i++){
-            inter.array[i]=this.array[i]|array2.array[i];
-        }return inter;
+        for (int i=0;i<inte.array.length;i++){
+            if (i<in){
+                inte.array[i]=this.array[i]|array2.array[i];
+            } else {
+                if(in==this.array.length){
+                    inte.array[i]=array2.array[i];
+                } else {
+                    inte.array[i]=this.array[i];
+                }
+            }
+        }System.out.println(Arrays.toString(inte.array));
+        return inte;
     }
 /*
     //Дополнение
