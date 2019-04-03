@@ -1,61 +1,45 @@
 class Bitset{
     int[] array;//Массив
     private int size;
+
     Bitset(int size){
-        if(size%32==0){
-            array=new int[size/32];
-            for (int i=0;i<array.length;i++) {
-                array[i]= Integer.parseInt("0", 2);
-            }
-        }else {
-            array=new int[(size/32)+1];
-            for (int i=0;i<array.length;i++) {
-                array[i]=Integer.parseInt("1111111111111111111111111111111", 2);
-            }
-            StringBuilder str= new StringBuilder();
-            for(int j=0;j<size%32;j++){
-                str.append(1);
-            }
-            String st = String.valueOf(str);
-            array[array.length-1]= Integer.parseInt(st, 2);
-        }
+        if(size%32==0) this.array=new int[size/32];
+        else this.array=new int[(size/32)+1];
+        for (int i=0;i<(size/32)-1;i++) this.array[i]=0;
         this.size=size;
     }
+
     //Удаление
-    public void remuve(int number){
-        int num=number%32;
-        int r=2147483646;
-        if (number%32==0){
-            for (int i=0;i<31;i++){
-                r=r<<1;
-                r|=1;
+    public void remuve(int number){//Меняет бит под определенным номером с 1 на 0
+        if(number<=this.size){
+            int num=number%32;
+            int r=Integer.MAX_VALUE-1;
+            if (number%32==0){
+                number=(number/32)-1;
+            }else {
+                number = (int)Math.floor(number >> 5);
+                for(int i=0;i<32-num;i++){
+                    r=r<<(1);
+                    r|=1;
+                }
             }
-            number=number/32;
-        }else {
-            number = (int)Math.floor(number >> 5);
-            for (int i=0;i<32-num;i++){
-                r=r<<1;
-                r|=1;
-            }
-        }
-        this.array[number]&=Math.abs(r);
-        System.out.println(Integer.toBinaryString(r));
-        System.out.println(Integer.toBinaryString(this.array[number]));
+            this.array[number]&=r;
+        }else throw new ArrayIndexOutOfBoundsException();
     }
 
     //Добавление
     public void add(int number){//Меняет бит под определенным номером с 0 на 1
-        int num=number%32;
-        int r=1;
-        if (number%32==0){
-            r=r<<(31);
-            number=number/32;
-        }else {
+        if(number<=this.size){
+            int num=number%32;
+            int r=1;
+            if (number%32==0){
+                number=(number/32)-1;
+            }else {
             number = (int)Math.floor(number >> 5);
-            r=r<<(31-num);
-        }
-        this.array[number]|=r;
-        System.out.println(Integer.toBinaryString(r));
+            r=r<<(32-num);
+            }
+            this.array[number]|=r;
+        }else throw new ArrayIndexOutOfBoundsException();
     }
 /*
     //Пересечение
