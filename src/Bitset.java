@@ -66,6 +66,18 @@ class Bitset{
         System.out.println(ans);
         return ans;
     }
+    //Объединение
+    public Bitset association (Bitset array2){
+        Bitset inter=new Bitset(0);
+        if(this.size>array2.size){
+            inter=new Bitset(array2.size);
+        }else {
+            inter=new Bitset(this.size);
+        }
+        for (int i=0;i<inter.array.length-1;i++){
+            inter.array[i]=this.array[i]|array2.array[i];
+        }return inter;
+    }
 /*
     //Дополнение
     public void addition (Bitset array2){
@@ -76,12 +88,7 @@ class Bitset{
         }
     }
 
-    //Объединение
-    public void association (Bitset array2){
-        for (int i2:array2.array){
-            this.add(i2);
-        }
-    }
+
 
 
 
